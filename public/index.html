@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>School Chat Rooms</title>
+
+    <style>
+      .chatHolder {
+        background-color: whitesmoke;
+        width: 95vw;
+        height: 90vh;
+        margin-left: 2.5vw;
+        margin-top: 5vh;
+        border: 5px solid black;
+        border-radius: 20px;
+      }
+
+      .messageLine {
+        position: absolute;
+        bottom: calc(5vh + 2px);
+        left: 5vw;
+        width: calc(90vw - 4px);
+        height: 30px;
+        border-radius: 10px;
+        border: 2px solid gray;
+        padding: 10px;
+      }
+
+      #output {
+        background-color: #DDD;
+        display: inline-block;
+        height: calc(90% - 20px);
+        width: calc(75% - 20px);
+        margin-left: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow-y: scroll;
+      }
+
+      #viewers {
+        background-color: #DDD;
+        display: inline-block;
+        height: calc(90% - 20px);
+        width: calc(20% - 20px);
+        margin-right: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        float: right;
+      }
+
+      p {
+        margin: 0;
+        margin-left: 30px;
+        padding: 0;
+        font-family: arial;
+      }
+
+      h1 {
+        margin: 0;
+        margin-left: 30px;
+        margin-bottom: 30px;
+        margin-top: 20px;
+        padding: 0;
+        font-family: arial;
+      }
+
+      body {
+        background-color: black;
+      }
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var room;
+      var name;
+      
+      room = prompt("Room Code (Existing or New):");
+
+      name = prompt("Name:");
+      
+      if (room == "" || room == undefined || room == null) {
+        room = "General";
+      }
+      
+      if (name == "" || name == undefined || name == null) {
+        name = "Guest";
+      }
+
+      var socket = io();
+
+      socket.emit("room", room);
+
+      socket.emit("username", name);
+
+      document.addEventListener("keydown", e => {
+        if (
+          e.code == "Enter" &&
+          document.activeElement == document.getElementById("messageLine")
+        ) {
+          socket.emit("message", document.activeElement.value);
+          document.activeElement.value = "";
+        }
+      });
+
+      socket.on("requestViewerUpdate", function() {
+        socket.emit("username", name);
+      });
+
+      socket.on("message", function(data) {
+        document.getElementById("output").innerHTML =
+          "<br>" +
+          "<p>" +
+          data +
+          "</p>" + 
+          document.getElementById("output").innerHTML;
+      });
+
+      socket.on("updateViewers", function(viewers) {
+        let viewersString = "<h1>" + room + "</h1>";
+
+        for (var i = 0; i < viewers.length; i++) {
+          viewersString =
+            viewersString +
+            "<p style='margin-left: 50px;'>" +
+            viewers[i] +
+            "</p>";
+        }
+
+        document.getElementById("viewers").innerHTML = viewersString;
+
+        document.getElementById("messageLine").focus();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="chatHolder">
+      <div id="output"></div>
+      <div id="viewers"></div>
+      <input
+        class="messageLine"
+        placeholder="Type Message Here..."
+        type="text"
+        id="messageLine"
+      />
+    </div>
+  </body>
+</html>
