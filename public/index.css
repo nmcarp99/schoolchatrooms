@@ -1,0 +1,83 @@
+.chatHolder {
+  background-color: whitesmoke;
+  width: 95vw;
+  height: 90vh;
+  margin-left: 2.5vw;
+  margin-top: 5vh;
+  border: 5px solid black;
+  border-radius: 20px;
+}
+
+.messageLine {
+  position: absolute;
+  bottom: calc(5vh + 2px);
+  left: 5vw;
+  width: calc(90vw - 4px);
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  padding: 10px;
+}
+
+.topLink {
+  position: fixed;
+  top: 0;
+  margin-top: 7px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+}
+
+#output {
+  background-color: #DDD;
+  display: inline-block;
+  height: calc(90% - 20px);
+  width: calc(75% - 20px);
+  margin-left: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+#viewers {
+  background-color: #DDD;
+  display: inline-block;
+  height: calc(90% - 20px);
+  width: calc(20% - 20px);
+  margin-right: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  float: right;
+}
+
+p {
+  margin: 0;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 0;
+  font-family: arial;
+}
+
+h1 {
+  margin: 0;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  padding: 0;
+  font-family: arial;
+}
+
+body {
+  background-color: black;
+}

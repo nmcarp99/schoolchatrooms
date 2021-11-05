@@ -1,0 +1,24 @@
+h1, .h1 {
+  text-align: center;
+  font-family: arial;
+  max-width: 700px;
+}
+
+h2, .h2 {
+  font-family: arial;
+  margin-left: 25px;
+  max-width: 700px;
+}
+
+h3, .h3 {
+  font-family: arial;
+  margin-left: 50px;
+  max-width: 700px;
+}
+
+.codeBox {
+  background-color: whitesmoke;
+  border: 2px lightgray dashed;
+  padding: 10px;
+  max-width: 630px;
+}

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="controlWindow.css">
+    <title>Control Window</title>
+  </head>
+  <body>
+    <a class="back" href="index.html">&#8592; Back</a>
+    <h1>
+      Using The Control Window
+    </h1>
+    <h2>
+      Setup
+    </h2>
+    <p class="h2">
+      In order to use the "Control Window" feature, you first need to create a bookmark with a specific url. You will click this bookmark when you want to control the original snake tab from another website. You will need to click this bookmark every time you load a new page or reload the page.
+    </p>
+    <h3>
+      Creating The Bookmark
+    </h3>
+    <ol class="h3">
+      <li>Right click on the bookmark's bar.</li>
+      <li>Click on "Add page".</li>
+      <li>Set the name to what you would like to be displayed on your bookmark's bar.</li>
+      <li>Copy and paste from the first box into the "address" field. If you don't want the control window to scroll when you press the arrow keys, use the second box instead.</li>
+    </ol>
+    <div class="codeBox h3">
+      javascript:document.onkeydown = function(e) { window.opener.postMessage(e.code, '*'); }
+    </div>
+    <br>
+    <div class="codeBox h3">
+      javascript:document.onkeydown = function(e) { e.preventDefault(); window.opener.postMessage(e.code, '*'); }
+    </div>
+    <h2>
+      Usage
+    </h2>
+    <p class="h2">
+      Now that you have the "Control Window" feature set up, you now need to learn how to use it.
+    </p>
+    <h3>
+      Layout
+    </h3>
+    <ol class="h3">
+      <li>Open the <a target="_blank" href="https://schoolchatrooms.glitch.me">chat website</a>.</a></li>
+      <li>Drag the window to one side of your screen.</li>
+      <li>Click the "Open Conrol Window" in the top right corner of your screen.</li>
+      <li>Drag the newly-opened tab to the other side of the screen.</li>
+    </ol>
+    <h3>
+      Gameplay
+    </h3>
+    <ol class="h3">
+      <li>Before the original tab will take input from the control window, you need to activate it by clicking the bookmark you added earlier.</li>
+      <li>Now you can go back to the original snake tab.</li>
+      <li>Switch your focus to the new window by clicking on it.</li>
+      <li>You should now be able to start the game with enter or space and move with the arrow keys, all while still focusing on the new window.</li>
+    </ol>
+    <h3>
+      Tips & Tricks
+    </h3>
+    <ul class="h3">
+      <li>You can go to different websites, and as long as you don't close the control tab, you should only have to click the bookmark to reactivate the controls.</li>
+      <li>Remember that you need to reactivate the control window every time you load or reload the control window.</li>
+      <li>If there are any issues, use the "Report an Issue" link on the main page. It is in the top right corner.</li>
+    </ul>
+  </body>
+</html>
