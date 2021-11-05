@@ -46,12 +46,12 @@ socket.emit("room", room);
 socket.emit("username", name);
 
 window.addEventListener("blur", () => {
-  document.getElementById("warning").style.display = "none";
+  document.getElementById("warning").style.display = "";
 });
 
 window.addEventListener("focus", () => {
   if (controlWindowOpen) {
-    document.getElementById("warning").style.display = "";
+    document.getElementById("warning").style.display = "block";
   }
 });
 
