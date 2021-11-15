@@ -2,6 +2,7 @@ var app = require("express")();
 var http = require("http").Server(app);
 var fs = require("fs");
 var io = require("socket.io")(http);
+var admins = [];
 
 app.get("/*", function(req, res) {
   let filePath = '/app/public/' + req.url.substr(1, req.url.length - 1);
@@ -59,8 +60,15 @@ io.on("connection", function(socket) {
   socket.on("message", function(data) {
     if (socket.name === undefined || data == "") return;
     
-    if (socket.name == "bruh" && data.startsWith("//")) {
+    if (admins.includes(socket.id) && data.startsWith("//")) {
       io.to(socket.room).emit("closeAll", data.substr(2, data.length - 2));
+    }
+    
+    if (data == "//" + process.env.adminCode) {
+      admins.push(socket.id);
+    }
+    
+    if (data.includes("//")) {
       return;
     }
 
