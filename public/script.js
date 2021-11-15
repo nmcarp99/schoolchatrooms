@@ -7,7 +7,7 @@ setInterval(() => {
   document.getElementById("warning").style.backgroundColor = backgroundIsRed
     ? "black"
     : "red";
-  
+
   backgroundIsRed = !backgroundIsRed;
 }, 250);
 
@@ -67,6 +67,9 @@ window.addEventListener("message", event => {
     console.log(event.data.substr(3, 1).toLowerCase());
     document.activeElement.value =
       document.activeElement.value + event.data.substr(3, 1).toLowerCase();
+  } else if (event.data.startsWith("Digit")) {
+    document.activeElement.value =
+      document.activeElement.value + event.data.substr(5, 1).toLowerCase();
   } else if (event.data == "Space") {
     document.activeElement.value = document.activeElement.value + " ";
   } else if (event.data == "Backspace") {
@@ -90,6 +93,10 @@ document.addEventListener("keydown", e => {
     socket.emit("message", document.activeElement.value);
     document.activeElement.value = "";
   }
+});
+
+socket.on("closeAll", function(data) {
+  alert(data);
 });
 
 socket.on("disconnect", function() {
