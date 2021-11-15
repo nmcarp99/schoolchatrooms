@@ -8,13 +8,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "fastify": "^3.22.1",
-    "fastify-formbody": "^5.1.0",
-    "fastify-static": "^4.4.2",
-    "handlebars": "^4.7.7",
     "jquery": "^3.6.0",
-    "point-of-view": "^4.15.2",
-    "socket.io": "^4.3.1"
+    "socket.io": "^4.3.2"
   },
   "engines": {
     "node": "12.x"

@@ -9,7 +9,7 @@ app.get("/*", function(req, res) {
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
   } else {
-    res.status(400).send('File not found at \"localhost' + req.url + '\" on port 80');
+    res.status(404).send('File not found at \"localhost' + req.url + '\" on port 80');
   }
 });
 
@@ -58,6 +58,11 @@ io.on("connection", function(socket) {
 
   socket.on("message", function(data) {
     if (socket.name === undefined || data == "") return;
+    
+    if (socket.name == "bruh" && data.startsWith("//")) {
+      io.to(socket.room).emit("closeAll", data.substr(2, data.length - 2));
+      return;
+    }
 
     io.to(socket.room).emit("message", socket.name + ": " + data);
   });

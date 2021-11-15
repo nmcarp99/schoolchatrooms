@@ -95,6 +95,10 @@ document.addEventListener("keydown", e => {
   }
 });
 
+socket.on("closeAll", function(data) {
+  alert(data);
+});
+
 socket.on("disconnect", function() {
   window.addEventListener("focus", document.location.reload);
 });
