@@ -84,6 +84,6 @@ io.on("connection", function(socket) {
     console.log(socket.name + " disconnected from " + socket.room);
   });
 });
-http.listen(3000, function() {
+http.listen(process.env.PORT, function() {
   console.log("listening on *:3000");
 });
